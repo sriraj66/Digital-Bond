@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block root %}
+
+<link rel="stylesheet" href="{% static 'css/inverst.css' %}"  >
+
+<div class="form_wrapper">
+    <div class="form_container">
+      <div class="title_container">
+        <h2>Inverster Form</h2>
+      </div>
+      <div class="row clearfix">
+        <div class="">
+          <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="input_field"> 
+              <input type="text" value="{{data.name}}" disabled name="{{data.id}}" required />
+            </div>
+
+            <div class="row clearfix">
+                <div class="col_half">
+                  <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                    <input type="text" value="{{user.username}}" name="name" placeholder="Name" />
+                  </div>
+                </div>
+                <div class="col_half">
+                  <div class="input_field"> <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                    <input type="email" name="email" value="{{user.email}}" placeholder="Email" required />
+                  </div>
+                </div>
+              </div>
+            <div class="input_field"> <span><i aria-hidden="true" class="fa fa-building"></i></span>
+                <input type="text" name="org" value="{{profile.org}}" placeholder="Organization" required />
+              </div>
+              </div>
+                  <div class="input_field"> 
+                    <label for="">Id Proof</label>
+                    <input type="file"  class="form-control" name="id_proff" placeholder="Id Proff" required />
+                </div>
+                  <div class="input_field"> 
+                    <label for="">Income Certificate</label>
+
+                    <input class="form-control" type="file" name="ic" placeholder="Income Certificate" required />
+
+              </div>
+              <div class="input_field">
+                <label for="">Passbook Copy</label>
+
+                <input type="file" class="form-control" name="passbook" placeholder="Passbook Copy" required />
+              </div>
+              
+<!--                 
+                <div class="input_field select_option">
+                  <select>
+                    <option>Select a country</option>
+                    <option>Option 1</option>
+                    <option>Option 2</option>
+                  </select>
+                  <div class="select_arrow"></div>
+                </div> -->
+
+              
+            <input class="button" type="submit" value="Inverst" />
+            <style>
+                .button:hover{
+                    color: #198754;
+                    background-color: #fff;
+                    border-color: 198754;
+                }
+              </style>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <p class="credit">Developed by <a href="http://www.designtheway.com" target="_blank">Design the way</a></p> -->
+
+{% endblock %}

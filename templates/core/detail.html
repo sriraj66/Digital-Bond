@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{data.name}}
+{% endblock %}
+
+{% block root %}
+
+<link rel="stylesheet" href="{% static 'css/detail.css' %}">
+
+<div class="container my-5">
+    <div class="row details-snippet1">
+        <div class="col-md-7">
+            <div class="row">
+                <div class="col-md-2 mini-preview">
+                    <img class="img-fluid" src="{{data.url_img}}" alt="Preview">
+                    <!-- <img class="img-fluid" src="https://cdn.pixabay.com/photo/2015/07/24/18/37/model-858748_960_720.jpg" alt="Preview"> -->
+                </div>
+                <div class="col-md-10">
+                    <div class="product-image">
+                        <img class="img-fluid" src="{{data.url_img}}" alt="Main Image">
+                        <!-- <video src="{{data.presentation_url}}"></video> -->
+                        <!-- <iframe class="img-fluid" src="{{data.presentation_url}}" frameborder="0"></iframe> -->
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-5">
+            <div class="category"><span class="theme-text">{{data.name}}</div>
+                <br>
+            <!-- <div class="brief-description"> {{data.desc}} </div> -->
+            
+            <br>
+            <div class="brief-description"><b> Check This Out : <a target="_blank" href="{{data.presentation_url}}">Presentation Video</a></b> </div>
+            
+
+            <!-- <div class="ratings my-2">
+                <div class="stars d-flex">
+                    <div class="theme-text mr-2">Product Ratings: </div>
+                    <div>&#9733;</div>
+                    <div>&#9733;</div>
+                    <div>&#9733;</div>
+                    <div>&#9733;</div>
+                    <div>&#9733;</div>
+                    <div class="ml-2">(4.5) 50 Reviews</div>
+                </div>
+            </div> -->
+            <br>
+            <div class="brief-description"> {{data.email}} </div>
+            <br>
+            <div class="theme-text subtitle"> crisis :</div>
+            <div class="brief-description">
+                {{ data.crisis }}
+            </div>
+            
+            <hr>
+            <div class="price my-4">Fund Required <b>SR {{amt_req}}</b></div>
+            <div class="price my-2"><b>ETH {{ amt_eth }}</b></div>
+
+            <a class="btn btn-outline-success" href="{% url 'inverst' data.id %}">Inverst Now</a>
+            
+           
+
+        </div>
+    </div>
+
+    <div class="additional-details my-5 text-center">
+        <!-- Nav pills -->
+        <ul class="nav nav-tabs justify-content-center">
+            <li class="nav-tabs">
+                <a class="nav-link active" data-toggle="tab" data-bs-toggle="tab" href="#home">Description</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" data-bs-toggle="tab" href="#menu1">Bank Details</a>
+            </li>
+            <!-- <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" data-bs-toggle="tab" href="#menu2">Specifications</a>
+            </li> -->
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content mt-4 mb-3">
+            <div class="tab-pane container active" id="home">
+                <div class="description">
+                    {{data.desc}}
+                </div>
+            </div>
+            <div class="tab-pane container fade" id="menu1">
+                <div class="review">
+                    
+                <table class="table table-success">
+                    <tbody>
+                    <tr>
+                        <th>ETH Wallet ID</th>
+                        <th>{{data.metamask_id}}</th>
+                        
+                    </tr>
+                    <tr>
+                        <th>Dead Line</th>
+                        <th>{{data.deadline}}</th>
+                    </tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+            <div class="tab-pane container fade" id="menu2">
+                <div class="specification">
+                    <p>PUT SPECIFICATIONS HERE</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+</div>
+
+{% endblock %}

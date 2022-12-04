@@ -1,0 +1,191 @@
+{% extends 'base.html' %}
+
+{% block root %}
+
+<section style="background-color: #eee;">
+    <div class="container py-5">
+      <div class="row">
+        <div class="col">
+          <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+            <ol class="breadcrumb mb-0">
+              <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+              <!-- <li class="breadcrumb-item"><a href="#"></a></li> -->
+              <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="card mb-4">
+            <div class="card-body text-center">
+              <img src="{{profile.profile.url}}" alt="Profile"
+                class="rounded-circle img-fluid" style="width: 150px;">
+              <h5 class="my-3"> {{profile.fname}} {{profile.lname}} </h5>
+              <p class="text-muted mb-1">{{user.username}}</p>
+              <p class="text-muted mb-4">{{profile.address}}</p>
+              <div class="d-flex justify-content-center mb-2">
+                <!-- <button type="button" class="btn btn-primary">Follow</button> -->
+                <!-- <button type="button" class="btn btn-outline-primary ms-1">Message</button> -->
+              </div>
+            </div>
+          </div>
+          <div class="card mb-4 mb-lg-0">
+            <div class="card-body p-0">
+              <ul class="list-group list-group-flush rounded-3">
+                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                    <i class="fas fa-globe fa-lg text-warning"></i>
+                    <a href="{{profile.social_media}}">
+
+                    <p class="mb-0">{{profile.social_media | slice:30}}....</p>
+                
+                </a>  
+                </li>
+                
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Full Name</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{profile.fname}} {{profile.lname}} </p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Email</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{profile.email}}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Phone</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{profile.phone}}</p>
+                </div>
+              </div>
+              
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Address</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{profile.address}}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Id Proof</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0"> <a download href="{{profile.id_proff.url}}">Id proof</a> </p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="row">
+            
+            <div class="additional-details my-5 text-center">
+                <!-- Nav pills -->
+                <ul class="nav nav-tabs justify-content-center">
+                    <li class="nav-tabs">
+                        <a class="nav-link active" data-toggle="tab" data-bs-toggle="tab" href="#home">Inversted</a>
+                    </li>
+                    <li class="nav-item">
+                        <!-- <a class="nav-link" data-toggle="tab" data-bs-toggle="tab" href="#menu1">Account</a> -->
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" data-bs-toggle="tab" href="#menu2">Specifications</a>
+                    </li> -->
+                </ul>
+        
+                <!-- Tab panes -->
+                <div class="tab-content mt-4 mb-3">
+                    <div class="tab-pane container active" id="home">
+                        <div class="description">
+                            <table class="table">
+                                <thead class="thead table-success">
+                                  <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Department</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Inversted On</th>
+                                    <th scope="col">Deadline</th>
+                                    <th scope="Bond">Bond</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    {% for i in inverst %}
+                                  <tr>
+                                    <th scope="row">##{{i.id}}</th>
+                                    <td> <a href=" {% url 'detail' i.dept.id %} ">{{i.dept.name}}</a> </td>
+                                    <td>{{i.is_approved}}</td>
+                                    <td>{{i.created.date}}</td>
+                                    <td>{{i.dept.deadline}}</td>
+                                    <td> <a href="{% url 'bond' i.id %}" target="_blank" ><i class="fa fa-print"> print</i></a> </td>
+                                  </tr>
+                                  {% endfor %}
+                                </tbody>
+                              </table>
+                              
+                        </div>
+                    </div>
+                    <div class="tab-pane container fade" id="menu1">
+                        <div class="review">
+                            
+                        <!-- <table class="table table-success">
+                            <tbody>
+                            <tr>
+                                <th>Bank Name</th>
+                                <th>{{profile.bank_name}}</th>
+                                
+                            </tr>
+                            <tr>
+                                <th>Holder Name</th>
+        
+                                <th>{{profile.holder_name}}</th>
+                            </tr>
+                            <tr>
+                                <th>Account Number</th>
+                                <th>{{profile.account_number}}</th>
+                                
+                            </tr>
+                            <tr>
+                                <th>IFSC Code</th>
+                                <th>{{profile.ifsc}}</th>
+                            </tr>
+        
+                           
+                            </tbody>
+                        </table> -->
+                        </div>
+                    </div>
+                    <div class="tab-pane container fade" id="menu2">
+                        <div class="specification">
+                            <p>PUT SPECIFICATIONS HERE</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
